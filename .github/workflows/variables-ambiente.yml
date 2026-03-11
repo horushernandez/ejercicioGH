@@ -1,0 +1,42 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Variables Ambiente ENV
+
+# Controls when the workflow will run
+on:
+  
+  push:
+
+  # pERMITE EJECUTAR EL WORKFLOW DE FORMA MANUAL
+  workflow_dispatch:
+
+env:
+    SALUDO: "Hola desde el workflow"
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "demo-env"
+  demo-on:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    env:
+      SALUDO: "Hola desde el JOB"
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: "Mostrar variable a nivel del job"
+        run: echo "SALUDO = $SALUDO"
+
+      # Runs a single command using the runners shell
+      - name: Mostrar variable a nivel del step
+        env:
+          SALUDO: "Hola desde el STEP"
+        run: echo "SALUDO = $SALUDO"
+
+  demo2-env:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Mostrar variable del workflow"
+        run: echo "SALUDO = $SALUDO" 
